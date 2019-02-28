@@ -18,4 +18,13 @@ public class Max {
         return first > second ? first : second;
     }
 
+    /**
+     * max - выбор максимального числа.
+     * @param first - первый аргумент.
+     * @param second - второй аргумент.
+     * @param third - третий аргумент.
+     */
+    public int max(int first, int second, int third) {
+      return this.max(this.max(first, second), third);
+    }
 }

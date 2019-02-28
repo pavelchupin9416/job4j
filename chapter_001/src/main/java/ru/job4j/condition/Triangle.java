@@ -52,11 +52,11 @@ public class Triangle {
      * @param ab Длина от точки a до точки b.
      * @param ac Длина от точки a до точки c.
      * @param bc Длина от точки b до точки c.
-     * @return
+     * @return результат возможности создать треугольник.
      */
     private boolean exist(double ab, double ac, double bc) {
         boolean triangle = true;
-        if ((ab + ac <= bc) | (ab + bc <= ac) | (bc + ac <= ab)) {
+        if ((ab + ac <= bc) || (ab + bc <= ac) || (bc + ac <= ab)) {
                 triangle = false;
         }
 

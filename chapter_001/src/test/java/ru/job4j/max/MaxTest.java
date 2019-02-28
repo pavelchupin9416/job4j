@@ -28,4 +28,11 @@ public class MaxTest {
         int result = maxim.max(4, 2);
         assertThat(result, is(4));
     }
+
+    @Test
+    public void whenSecondAndThirdLessFirst() {
+        Max maxim = new Max();
+        int result = maxim.max(4, 2, 1);
+        assertThat(result, is(4));
+    }
 }
