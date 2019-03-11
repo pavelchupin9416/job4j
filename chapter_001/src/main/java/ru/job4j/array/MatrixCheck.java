@@ -17,16 +17,9 @@ public class MatrixCheck {
         boolean temp = data[0][0];
         boolean temp2 = data[0][data.length - 1];
         for (int index = 0; index < data.length; index++) {
-            if (data.length % 2 == 0) {
-                if (data[index][index] != temp || data[index][data.length - 1 - index] != temp2) {
-                    result = false;
-                    break;
-                }
-            } else {
-                if (data[index][index] != temp || data[index][data.length - 1 - index] != temp) {
-                    result = false;
-                    break;
-                }
+            if (data[index][index] != temp || data[index][data.length - 1 - index] != temp2) {
+                result = false;
+                break;
             }
        }
         return result;
