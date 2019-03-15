@@ -77,7 +77,7 @@ public class Logic {
                 temp1=temp1+table[cell][row];
             }
 
-          if (temp == 5 || temp1 == 5 ) {
+          if (temp == table.length || temp1 == table.length ) {
                 result=true;
             }
         }
