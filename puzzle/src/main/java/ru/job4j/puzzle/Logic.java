@@ -70,15 +70,15 @@ public class Logic {
         int[][] table = this.convert();
         boolean result = false;
         for (int row = 0; row != table.length; row++) {
-            int temp=0;
-            int temp1=0;
+            int temp = 0;
+            int temp1 = 0;
             for (int cell = 0; cell != table.length; cell++) {
-                temp=temp+table[row][cell];
-                temp1=temp1+table[cell][row];
+                temp = temp + table[row][cell];
+                temp1 = temp1 + table[cell][row];
             }
 
-          if (temp == table.length || temp1 == table.length ) {
-                result=true;
+          if (temp == table.length || temp1 == table.length) {
+                result = true;
             }
         }
         return result;
