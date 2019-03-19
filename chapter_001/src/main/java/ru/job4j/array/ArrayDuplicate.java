@@ -15,7 +15,6 @@ public class ArrayDuplicate {
      * @return array - массив без дубликатов.
      */
     public String[] remove(String[] array) {
-
         int end = array.length;
         for (int i = 0; i < end; i++) {
             String word = array[i];

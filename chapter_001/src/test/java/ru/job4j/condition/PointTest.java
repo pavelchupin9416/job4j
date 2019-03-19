@@ -17,7 +17,6 @@ public class PointTest {
      */
     @Test
     public void whenDistancePointAandBThen45() {
-
         Point a = new Point(0, 1);
         Point b = new Point(2, 5);
         double result = a.distanceTo(b);

@@ -18,10 +18,8 @@ public class ArrayDuplicateTest {
     public void whenRemoveDuplicatesThenArrayWithoutDuplicate() {
         String[] arr = new String[] {"Привет", "Мир", "Привет", "Супер", "Мир"};
         ArrayDuplicate dupl = new ArrayDuplicate();
-
         arr = dupl.remove(arr);
         String[] expect = new String[] {"Привет", "Мир", "Супер"};
         assertThat(arr, is(expect));
-
     }
 }

@@ -19,12 +19,12 @@ public class SortMassiv {
         int k = 0;
         for (int i = 0; i < sort.length; i++) {
             if (j == first.length)  {
-                sort[i]=second[k];
+                sort[i] = second[k];
                 k++;
                 continue;
             }
-            if (k == second.length){
-                sort[i]=first[j];
+            if (k == second.length) {
+                sort[i] = first[j];
                 j++;
                 continue;
             }

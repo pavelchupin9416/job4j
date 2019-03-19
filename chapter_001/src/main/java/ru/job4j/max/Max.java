@@ -6,7 +6,7 @@ package ru.job4j.max;
  * @since 0.1
  */
 
-public class Max {
+public class  Max {
 
     /**
      * max - выбор максимального числа.
