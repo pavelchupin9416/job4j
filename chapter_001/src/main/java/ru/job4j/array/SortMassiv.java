@@ -15,28 +15,25 @@ public class SortMassiv {
      */
     public int[] sortmas(int[] first, int[] second) {
         int[] sort = new int[first.length + second.length];
-
         int j = 0;
         int k = 0;
         for (int i = 0; i < sort.length; i++) {
-           if (first[j] <= second[k]) {
-             sort[i] = first[j];
-             if (j < first.length)  {
-                 j++;
-             }
-               if (j == first.length)  {
-                 System.arraycopy(second, k, sort, i + 1, second.length - k);
-                 break;
-             }
-           } else {
+            if (j == first.length)  {
+                sort[i]=second[k];
+                k++;
+                continue;
+            }
+            if (k == second.length){
+                sort[i]=first[j];
+                j++;
+                continue;
+            }
+            if (first[j] <= second[k]) {
+                sort[i] = first[j];
+                j++;
+            } else {
                sort[i] = second[k];
-               if (k < second.length) {
                    k++;
-               }
-               if (k == second.length) {
-                   System.arraycopy(first, j, sort, i + 1, first.length - j);
-                   break;
-               }
            }
         }
         return sort;
