@@ -2,5 +2,13 @@ package ru.job4j.proffesion;
 
 public class Project {
 
-   public String nazvanie;
+   private String nazvanie;
+
+   public String getNazvanie() {
+      return nazvanie;
+   }
+
+   public void setNazvanie(String nazvanie) {
+      this.nazvanie = nazvanie;
+   }
 }
