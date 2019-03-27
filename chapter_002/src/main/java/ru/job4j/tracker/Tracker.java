@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.Random;
+import java.util.Arrays;
 
 /**
  * Class Tracker создание класса заявок.
@@ -41,6 +42,7 @@ public class Tracker {
        for (int index = 0; index != this.position; index++) {
            if (items[index] != null && items[index].getId().equals(id)) {
                 items[index] = item;
+               items[index].setId(id);
                 result = true;
                 break;
             }
@@ -58,6 +60,7 @@ public class Tracker {
             if (items[index] != null && items[index].getId().equals(id)) {
                 System.arraycopy(items, index + 1, items, index, this.position - index);
                 result = true;
+                this.position--;
                 break;
             }
         }
@@ -68,11 +71,11 @@ public class Tracker {
      * Метод возвращает массив заявок.
      */
     public Item[] findAll() {
-        Item[] result = new Item[this.position];
+       /* Item[] result = new Item[this.position];
         for (int index = 0; index != this.position; index++) {
             result[index] = this.items[index];
-        }
-        return result;
+        }*/
+        return Arrays.copyOf(this.items, this.position);
     }
 
     /**
@@ -88,7 +91,7 @@ public class Tracker {
             j++;
             }
         }
-        return result;
+        return Arrays.copyOf(result, j);
     }
 
     /**

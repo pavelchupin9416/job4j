@@ -36,7 +36,7 @@ public class TrackerTest {
         tracker.add(previous[1]);
         tracker.add(previous[2]);
         String name = previous[0].getName();
-        Item[] result = new Item[] {previous[0], previous[2], null};
+        Item[] result = new Item[] {previous[0], previous[2]};
         assertThat(tracker.findByName(name), is(result));
     }
 
