@@ -78,7 +78,7 @@ public class TrackerTest {
         tracker.add(second);
         tracker.add(three);
         tracker.delete(second.getId());
-        Item[] result = new Item[] {first, three, null};
+        Item[] result = new Item[] {first, three};
         assertThat(tracker.findAll(), is(result));
     }
 }

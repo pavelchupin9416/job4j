@@ -102,8 +102,7 @@ public class StartUI {
         boolean result = this.tracker.replace(id, item);
         if (result) {
             System.out.println("------------ Новая заявка с getId : " + item.getId() + " name:" + item.getName() + "-----------");
-        }
-        else {
+        } else {
             System.out.println("------------заявки с данным id не существует-----------");
         }
     }
@@ -116,8 +115,8 @@ public class StartUI {
         String id = this.input.ask("Введите id удаляемой заявки :");
         boolean result = this.tracker.delete(id);
         if (result) {
-            System.out.println("------------ Заявка с getId : " + id + " удалена-----------"); }
-        else {
+            System.out.println("------------ Заявка с getId : " + id + " удалена-----------");
+        } else {
             System.out.println("------------заявки с данным id не существует-----------");
         }
     }
@@ -131,8 +130,7 @@ public class StartUI {
         Item result = this.tracker.findById(id);
         if (result != null) {
             System.out.println("------------ Заявка с id:" + result.getId() + " name:" + result.getName() + " decs:" + result.getDecs() + " -----------");
-        }
-        else {
+        } else {
             System.out.println("------------заявки с данным id не существует-----------");
         }
     }
@@ -148,8 +146,7 @@ public class StartUI {
             for (Item rst : result) {
                 System.out.println("id:" + rst.getId() + " name:" + rst.getName() + " decs:" + rst.getDecs());
             }
-        }
-        else {
+        } else {
             System.out.println("------------заявки с данным именем не существует-----------");
         }
     }
