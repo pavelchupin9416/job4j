@@ -139,7 +139,7 @@ public class StartUI {
      * Метод возращает заявки по name из хранилища.
      */
     private void nameItems() {
-        System.out.println("------------ Удаление заявки --------------");
+        System.out.println("------------ Получение заявок --------------");
         String name = this.input.ask("Введите имя заявки :");
         Item[] result = this.tracker.findByName(name);
         if (result != null) {
