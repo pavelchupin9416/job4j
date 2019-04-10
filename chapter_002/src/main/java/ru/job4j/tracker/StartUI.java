@@ -8,7 +8,7 @@ public class StartUI {
     /**
      * Константа меню для добавления новой заявки.
      */
-    private static final String ADD = "0";
+    public static final String ADD = "0";
     private static final String ALL = "1";
     private static final String EDIT = "2";
     private static final String DELETE = "3";
@@ -41,7 +41,7 @@ public class StartUI {
     /**
      * Основой цикл программы.
      */
-    public void init() {
+   /* public void init() {
         boolean exit = false;
         while (!exit) {
             this.showMenu();
@@ -64,7 +64,7 @@ public class StartUI {
                 exit = true;
             }
         }
-    }
+    }*/
 
     /**
      * Метод реализует добавленяи новый заявки в хранилище.
@@ -82,11 +82,7 @@ public class StartUI {
      * Метод показывает все заявки в хранилище.
      */
     private void showAllItems() {
-        System.out.println("------------ Все заявки --------------");
-        Item[] result = this.tracker.findAll();
-        for (Item rst : result) {
-            System.out.println("id:" + rst.getId() + " name:" + rst.getName() + " decs:" + rst.getDecs());
-        }
+
     }
 
 
@@ -110,7 +106,7 @@ public class StartUI {
     /**
      * Метод удаляет заявку в хранилище.
      */
-    private void deleteItems() {
+   private void deleteItems() {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите id удаляемой заявки :");
         boolean result = this.tracker.delete(id);
@@ -138,7 +134,7 @@ public class StartUI {
     /**
      * Метод возращает заявки по name из хранилища.
      */
-    private void nameItems() {
+   private void nameItems() {
         System.out.println("------------ Получение заявок --------------");
         String name = this.input.ask("Введите имя заявки :");
         Item[] result = this.tracker.findByName(name);
@@ -153,6 +149,7 @@ public class StartUI {
 
 
 
+
     private void showMenu() {
         System.out.println("Меню.");
         System.out.println("0. Add new Item");
@@ -164,6 +161,14 @@ public class StartUI {
         System.out.println("6. Exit Program");
     }
 
+    public void init() {
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            menu.select(Integer.valueOf(input.ask("select:")));
+        } while (!"y".equals(this.input.ask("Exit?(y): ")));
+    }
     /**
      * Запускт программы.
      * @param args
