@@ -40,7 +40,7 @@ public class ValidateInputTest {
         );
         List<Integer> range = new ArrayList<>();
         range.add(1);
-        input.ask("enter",range);
+        input.ask("enter", range);
         assertThat(
                 this.mem.toString(),
                 is(

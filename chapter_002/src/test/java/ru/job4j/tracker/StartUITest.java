@@ -45,7 +45,7 @@ public class StartUITest {
         tracker.add(new Item("test2", "testDescription2", 2L));
         //создаём StubInput с последовательностью действий(производим удаление заявки)
 
-        Input input =new StubInput(new String[]{"1","y"});
+        Input input = new StubInput(new String[]{"1", "y"});
         // создаём StartUI и вызываем метод init()
          new StartUI(input, tracker).init();
        // assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
