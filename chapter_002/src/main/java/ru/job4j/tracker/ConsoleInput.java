@@ -7,11 +7,13 @@ public class ConsoleInput implements Input {
 
 
     private final List<Consumer<Boolean>> validates = Arrays.asList(
-            exi -> {if(!exi){throw new MenuOutException("Out of menu range.");}
+            exi -> { if (!exi) {
+                throw new MenuOutException("Out of menu range.");
+            }
             }
     );
 
-    int hasAccess(final Boolean exi,int key){
+    int hasAccess(final Boolean exi, int key) {
         this.validates.forEach(action -> action.accept(exi));
         return key;
     }
@@ -32,7 +34,7 @@ public class ConsoleInput implements Input {
            }
         }
 
-        return hasAccess(exist,key);
+        return hasAccess(exist, key);
         /*if (exist) {
             return key;
         } else {
