@@ -1,6 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class StubInput implements Input {
     /**
@@ -19,6 +21,18 @@ public class StubInput implements Input {
      * При каждом вызове надо передвинуть указатель на новое число.
      */
     private int position;
+
+
+
+    private final List<Consumer<Boolean>> validates = Arrays.asList(
+           exi -> {if(!exi){throw new MenuOutException("Out of menu range.");}
+           }
+    );
+
+    int hasAccess(final Boolean exi,int key){
+        this.validates.forEach(action -> action.accept(exi));
+        return key;
+    }
 
     public StubInput(final String[] value) {
         this.value = value;
@@ -47,11 +61,13 @@ public class StubInput implements Input {
                 break;
             }
         }
-        if (exist) {
+
+        return hasAccess(exist,key);
+        /*if (exist) {
             return key;
         } else {
             throw new MenuOutException("Out of menu range.");
-        }
+        }*/
         //  throw new UnsupportedOperationException("Unsup");
     }
 }
