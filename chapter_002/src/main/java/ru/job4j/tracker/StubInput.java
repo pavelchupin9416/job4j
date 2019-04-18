@@ -23,19 +23,6 @@ public class StubInput implements Input {
     private int position;
 
 
-
-    private final List<Consumer<Boolean>> validates = Arrays.asList(
-            exi -> { if (!exi) {
-                throw new MenuOutException("Out of menu range.");
-            }
-            }
-    );
-
-    int hasAccess(final Boolean exi, int key) {
-        this.validates.forEach(action -> action.accept(exi));
-        return key;
-    }
-
     public StubInput(final String[] value) {
         this.value = value;
     }
@@ -64,12 +51,10 @@ public class StubInput implements Input {
             }
         }
 
-        return hasAccess(exist, key);
-        /*if (exist) {
-            return key;
-        } else {
+        if (!exist) {
             throw new MenuOutException("Out of menu range.");
-        }*/
-        //  throw new UnsupportedOperationException("Unsup");
+        }
+        return key;
+
     }
 }
