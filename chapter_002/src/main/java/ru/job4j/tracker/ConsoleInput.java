@@ -6,17 +6,7 @@ public class ConsoleInput implements Input {
     private Scanner scanner = new Scanner(System.in);
 
 
-    private final List<Consumer<Boolean>> validates = Arrays.asList(
-            exi -> { if (!exi) {
-                throw new MenuOutException("Out of menu range.");
-            }
-            }
-    );
 
-    int hasAccess(final Boolean exi, int key) {
-        this.validates.forEach(action -> action.accept(exi));
-        return key;
-    }
 
     @Override
     public String ask(String question) {
@@ -34,13 +24,10 @@ public class ConsoleInput implements Input {
            }
         }
 
-        return hasAccess(exist, key);
-        /*if (exist) {
-            return key;
-        } else {
+        if (!exist) {
             throw new MenuOutException("Out of menu range.");
-        }*/
-
+        }
+        return key;
 
     }
 }
