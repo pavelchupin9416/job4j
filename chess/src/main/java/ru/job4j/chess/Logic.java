@@ -24,12 +24,12 @@ public class Logic {
     public boolean move(Cell source, Cell dest) {
         boolean rst = false;
 
-        try {
+
             int index = this.findBy(source);
             if (index != -1) {
                 Cell[] steps = this.figures[index].way(source, dest);
-                for(int i = 0; i < steps.length; i++) {
-                    if(findBy(steps[i]) != -1){
+                for (int i = 0; i < steps.length; i++) {
+                    if (findBy(steps[i]) != -1) {
                         throw new OccupiedWayException("Occupied Way Exception");
                     }
                 }
@@ -39,11 +39,7 @@ public class Logic {
                 }
             }
 
-        } catch (ImpossibleMoveException ime) {
-            System.out.println("Недопустимый маршрут");
-        } catch (OccupiedWayException owe) {
-            System.out.println("На пути фигура ");
-        }
+
 
         return rst;
     }

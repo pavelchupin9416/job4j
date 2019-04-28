@@ -17,7 +17,7 @@ public class BishopWhite implements Figure {
         this.position = position;
     }
 
-    public boolean isDiagonal (Cell source, Cell dest) {
+    public boolean isDiagonal(Cell source, Cell dest) {
 
         boolean  result =  (Math.abs(source.x - dest.x) == Math.abs(source.y - dest.y)) ? true : false;
         return result;
@@ -44,11 +44,10 @@ public class BishopWhite implements Figure {
         if (!isDiagonal(source, dest)) {
             throw new ImpossibleMoveException("Impossible Move Exception");
         }
-        Cell[] steps = new Cell[Math.abs(source.x-dest.x)];
+        Cell[] steps = new Cell[Math.abs(source.x - dest.x)];
         int deltaX = (source.x - dest.x > 0) ? -1 : 1;
         int deltaY = (source.y - dest.y > 0) ? -1 : 1;
-        for (int i = 0; i < steps.length; i++)
-        {
+        for (int i = 0; i < steps.length; i++) {
             steps[i] = step(source.x + deltaX * (i + 1), source.y + deltaY * (i + 1));
         }
         return steps;
