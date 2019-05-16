@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="chapter_001" />
         <module name="chapter_002" />
+        <module name="chapter_003" />
         <module name="chess" />
         <module name="puzzle" />
       </profile>
