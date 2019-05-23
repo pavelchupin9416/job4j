@@ -12,23 +12,13 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        if (tasks.size() == 0) {
-            tasks.add(0, task);
-        } else {
-            if (task.getPriority() > tasks.get(tasks.size() - 1).getPriority()) {
-                tasks.add(tasks.size() , task);
-            } else {
-            for (int i = 0; i < tasks.size(); i++) {
-                if (task.getPriority() <= tasks.get(i).getPriority()) {
-                    tasks.add(i, task);
-                    break;
-                }
-            }
+        int index = tasks.size();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (task.getPriority() <= tasks.get(i).getPriority()) {
+                index = i;
             }
         }
-
-
-        //TODO добавить вставку в связанный список.
+        tasks.add(index, task);
     }
 
     public Task take() {
