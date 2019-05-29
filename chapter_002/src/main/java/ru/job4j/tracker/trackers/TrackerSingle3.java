@@ -3,6 +3,8 @@ package ru.job4j.tracker.trackers;
 import ru.job4j.tracker.Item;
 import ru.job4j.tracker.Tracker;
 
+import java.util.List;
+
 public class TrackerSingle3 {
     private static final TrackerSingle3 INSTANCE = new TrackerSingle3();
 
@@ -16,7 +18,7 @@ public class TrackerSingle3 {
         return this.tracker.add(model);
     }
 
-    public Item[] findAll() {
+    public List<Item> findAll() {
         return this.tracker.findAll();
     }
 
@@ -24,7 +26,7 @@ public class TrackerSingle3 {
         return this.tracker.findById(id);
     }
 
-    public Item[] findByName(String key) {
+    public List<Item> findByName(String key) {
         return this.tracker.findByName(key);
     }
 

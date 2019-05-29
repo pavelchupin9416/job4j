@@ -28,6 +28,7 @@ public class PhoneDictionary {
            if (value.getName().contains(key) || value.getAddress().contains(key) || value.getPhone().contains(key)
            || value.getSurname().contains(key)) {
             result.add(value);
+            break;
            }
         }
         return result;

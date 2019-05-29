@@ -6,6 +6,9 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 import org.junit.After;
 import org.junit.Before;
+
+import java.util.Arrays;
+import java.util.List;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.StringJoiner;
@@ -56,9 +59,9 @@ public class StartUITest {
                         .append(menu)
                         .append("------------ Все заявки --------------")
                         .append(System.lineSeparator())
-                        .append("id:" + tracker.findAll()[0].getId() + " name:test1 decs:testDescription")
+                        .append("id:" + tracker.findAll().get(0).getId() + " name:test1 decs:testDescription")
                         .append(System.lineSeparator())
-                        .append("id:" + tracker.findAll()[1].getId() + " name:test2 decs:testDescription2")
+                        .append("id:" + tracker.findAll().get(1).getId() + " name:test2 decs:testDescription2")
                         .append(System.lineSeparator())
                         .append(menu)
                         .append("Выход из программы")
@@ -87,8 +90,8 @@ public class StartUITest {
                         .append(menu)
                         .append("------------ Получение заявки --------------")
                         .append(System.lineSeparator())
-                        .append("------------ Заявка с id:" + tracker.findAll()[0].getId() + " name:" + tracker.findAll()[0].getName()
-                         + " decs:" + tracker.findAll()[0].getDecs() + " -----------")
+                        .append("------------ Заявка с id:" + tracker.findAll().get(0).getId() + " name:" + tracker.findAll().get(0).getName()
+                         + " decs:" + tracker.findAll().get(0).getDecs() + " -----------")
                         .append(System.lineSeparator())
                         .append(menu)
                         .append("Выход из программы")
@@ -118,11 +121,11 @@ public class StartUITest {
                         .append(menu)
                         .append("------------ Получение заявок --------------")
                         .append(System.lineSeparator())
-                        .append("id:" + tracker.findAll()[0].getId() + " name:" + tracker.findAll()[0].getName()
-                                + " decs:" + tracker.findAll()[0].getDecs())
+                        .append("id:" + tracker.findAll().get(0).getId() + " name:" + tracker.findAll().get(0).getName()
+                                + " decs:" + tracker.findAll().get(0).getDecs())
                         .append(System.lineSeparator())
-                        .append("id:" + tracker.findAll()[2].getId() + " name:" + tracker.findAll()[0].getName()
-                                + " decs:" + tracker.findAll()[2].getDecs())
+                        .append("id:" + tracker.findAll().get(2).getId() + " name:" + tracker.findAll().get(0).getName()
+                                + " decs:" + tracker.findAll().get(2).getDecs())
                         .append(System.lineSeparator())
                         .append(menu)
                         .append("Выход из программы")
@@ -140,7 +143,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();     // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
-        assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+        assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
 
     @Test
@@ -168,7 +171,7 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"3", first.getId(), "6"});
         // создаём StartUI и вызываем метод init()
         new StartUI(input, tracker).init();
-        Item[] result = new Item[] {second};
+        List<Item> result = Arrays.asList(second);
         assertThat(tracker.findAll(), is(result));
     }
 

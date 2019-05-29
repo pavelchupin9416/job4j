@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import java.util.List;
+import java.util.Arrays;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -17,26 +20,26 @@ public class TrackerTest {
     @Test
     public void whenFindAllThenRetrunAllItem() {
         Tracker tracker = new Tracker();
-        Item[] previous = new Item[] {new Item("test1", "testDescription1", 1L),
+        List<Item> previous = Arrays.asList(new Item("test1", "testDescription1", 1L),
                                         new Item("test2", "testDescriptio2", 2L),
-                                        new Item("test3", "testDescription3", 3L)};
-        tracker.add(previous[0]);
-        tracker.add(previous[1]);
-        tracker.add(previous[2]);
+                                        new Item("test3", "testDescription3", 3L));
+        tracker.add(previous.get(0));
+        tracker.add(previous.get(1));
+        tracker.add(previous.get(2));
         assertThat(tracker.findAll(), is(previous));
     }
 
     @Test
     public void whenFindByNameReturnItemThisSameName() {
         Tracker tracker = new Tracker();
-        Item[] previous = new Item[] {new Item("test1", "testDescription1", 1L),
+        List<Item> previous = Arrays.asList(new Item("test1", "testDescription1", 1L),
                 new Item("test2", "testDescriptio2", 2L),
-                new Item("test1", "testDescription3", 3L)};
-        tracker.add(previous[0]);
-        tracker.add(previous[1]);
-        tracker.add(previous[2]);
-        String name = previous[0].getName();
-        Item[] result = new Item[] {previous[0], previous[2]};
+                new Item("test1", "testDescription3", 3L));
+        tracker.add(previous.get(0));
+        tracker.add(previous.get(1));
+        tracker.add(previous.get(2));
+        String name = previous.get(0).getName();
+        List<Item>  result = Arrays.asList(previous.get(0), previous.get(2));
         assertThat(tracker.findByName(name), is(result));
     }
 
@@ -78,7 +81,7 @@ public class TrackerTest {
         tracker.add(second);
         tracker.add(three);
         tracker.delete(second.getId());
-        Item[] result = new Item[] {first, three};
+        List<Item>  result = Arrays.asList(first, three);
         assertThat(tracker.findAll(), is(result));
     }
 }
