@@ -45,7 +45,7 @@ public class Tracker {
        boolean result = false;
        for (int index = 0; index != items.size(); index++) {
            if (items.get(index) != null && items.get(index).getId().equals(id)) {
-               items.add(index, item);
+               items.set(index, item);
                items.get(index).setId(id);
                 result = true;
                 break;
