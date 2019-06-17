@@ -16,7 +16,14 @@ public class SortUser {
         return set;
     }
 
+    public List<User> sortNameLength(List<User> list) {
+        list.sort(new UserComparator());
+        return list;
+    }
 
-
+    public List<User> sortByAllFields(List<User> list) {
+        list.sort(new UserSortComparator());
+        return list;
+    }
 
 }

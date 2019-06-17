@@ -1,6 +1,7 @@
 package ru.job4j.sort;
 
 import java.util.Objects;
+import java.util.*;
 
 public class User implements Comparable<User> {
 
@@ -32,5 +33,8 @@ public class User implements Comparable<User> {
         return name;
     }
 
+    public int getAge() {
+        return age;
+    }
 
 }
