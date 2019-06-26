@@ -9,11 +9,11 @@ import java.util.*;
 public class SortUser {
 
     public Set<User> sort(List<User> list) {
-        TreeSet<User> set = new TreeSet<User>();
+       /* TreeSet<User> set = new TreeSet<User>();
         for (User i : list) {
             set.add(i);
-        }
-        return set;
+        }*/
+        return new TreeSet(list);
     }
 
     public List<User> sortNameLength(List<User> list) {
