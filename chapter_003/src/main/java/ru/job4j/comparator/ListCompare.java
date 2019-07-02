@@ -13,7 +13,7 @@ public class ListCompare implements Comparator<String> {
         }
         int rst = 0;
         for (int i = 0; i < lenght; i++) {
-        if (Character.compare(left.charAt(i), right.charAt(i)) >= 1 || Character.compare(left.charAt(i), right.charAt(i)) <= -1) {
+        if (Character.compare(left.charAt(i), right.charAt(i)) != 0) {
             rst = Character.compare(left.charAt(i), right.charAt(i));
             break;
         }
