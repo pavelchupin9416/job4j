@@ -23,7 +23,7 @@ public class Account {
     }
 
 
-    public String getReqs () {
+    public String getReqs() {
         return this.reqs;
     }
 
@@ -45,11 +45,15 @@ public class Account {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Account account = (Account) o;
-        return Double.compare(account.values, values) == 0 &&
-                Objects.equals(reqs, account.reqs);
+        return Double.compare(account.values, values) == 0
+                && Objects.equals(reqs, account.reqs);
     }
 
     @Override

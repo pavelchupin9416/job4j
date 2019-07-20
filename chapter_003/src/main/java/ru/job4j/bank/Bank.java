@@ -51,16 +51,16 @@ public class Bank {
      * @param  requisite -  реквизит.
      */
     private Account getActualAccount(String passport, String requisite) {
-        ArrayList<Account> list=new ArrayList<>();
+        ArrayList<Account> list = new ArrayList<>();
         for (User key : hashmap.keySet()) {
             if (key.matchPassport(passport)) {
                list = this.hashmap.get(key);
             }
         }
-        int temp=-1;
+        int temp = -1;
         for (Account ac : list) {
             if (ac.getReqs().equals(requisite)) {
-              temp=list.indexOf(ac);
+              temp = list.indexOf(ac);
             }
             }
         return temp == -1 ? null : list.get(temp);
@@ -113,21 +113,19 @@ public class Bank {
         boolean src = false;
         boolean dst = false;
         boolean transfer = false;
-        List<Account> list1=getUserAccounts(srcPassport);
-        List<Account> list2=getUserAccounts(destPassport);
         Account ac1 = null;
         Account ac2 = null;
-            if(getActualAccount(srcPassport,srcRequisite)!= null){
-            if (getActualAccount(srcPassport,srcRequisite).equals(srcRequisite)) {
+            if (getActualAccount(srcPassport, srcRequisite) != null) {
                 src = true;
-                ac1 =getActualAccount(srcPassport,srcRequisite);
-            }}
-            if(getActualAccount(destPassport,dstRequisite)!= null){
-            if (getActualAccount(destPassport,dstRequisite).equals(dstRequisite)) {
+                ac1 = getActualAccount(srcPassport, srcRequisite);
+            }
+            if (getActualAccount(destPassport, dstRequisite) != null) {
                 dst = true;
-                ac2= getActualAccount(destPassport,dstRequisite);
-            }}
-        if ((src && dst) && (ac1.transfer(ac2, amount))) {
+                ac2 = getActualAccount(destPassport, dstRequisite);
+            }
+        if ((src
+                && dst)
+                && (ac1.transfer(ac2, amount))) {
             transfer = true;
         }
         return transfer;

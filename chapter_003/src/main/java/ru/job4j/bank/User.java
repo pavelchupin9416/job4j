@@ -22,7 +22,7 @@ public class User {
         this.passport = passport;
     }
 
-    public String getPassport(){
+    public String getPassport() {
         return passport;
     }
 
@@ -36,12 +36,16 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         User user = (User) o;
-        return id == user.id &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(passport, user.passport);
+        return id == user.id
+                && Objects.equals(name, user.name)
+                && Objects.equals(passport, user.passport);
     }
 
     @Override
