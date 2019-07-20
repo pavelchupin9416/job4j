@@ -113,15 +113,13 @@ public class Bank {
         boolean src = false;
         boolean dst = false;
         boolean transfer = false;
-        Account ac1 = null;
-        Account ac2 = null;
-            if (getActualAccount(srcPassport, srcRequisite) != null) {
+        Account ac1 = getActualAccount(srcPassport, srcRequisite);
+        Account ac2 = getActualAccount(destPassport, dstRequisite);
+            if (ac1 != null) {
                 src = true;
-                ac1 = getActualAccount(srcPassport, srcRequisite);
             }
-            if (getActualAccount(destPassport, dstRequisite) != null) {
+            if (ac2 != null) {
                 dst = true;
-                ac2 = getActualAccount(destPassport, dstRequisite);
             }
         if ((src
                 && dst)
