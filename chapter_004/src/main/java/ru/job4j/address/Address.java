@@ -1,5 +1,9 @@
 package ru.job4j.address;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 /**
  *Class Address содержит адресса туристов.
  *@author chupin
@@ -13,6 +17,10 @@ public class Address {
     private int home;
 
     private int apartment;
+
+    public Address() {
+
+    }
 
     public Address(String city, String street, int home, int apartment) {
       this.city = city;
@@ -38,4 +46,27 @@ public class Address {
         return apartment;
     }
 
+    public List<Address> collect(List<Address> addresses) {
+        return   addresses.stream().distinct().collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Address address = (Address) o;
+        return home == address.home
+                && apartment == address.apartment
+                && Objects.equals(city, address.city)
+                && Objects.equals(street, address.street);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(city, street, home, apartment);
+    }
 }
