@@ -47,7 +47,7 @@ public class Address {
     }
 
     public List<Address> collect(List<Address> addresses) {
-        return   addresses.stream().distinct().collect(Collectors.toList());
+        return   addresses.stream().sorted(new AddressComp()).distinct().collect(Collectors.toList());
     }
 
     @Override

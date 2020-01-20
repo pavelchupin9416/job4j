@@ -31,7 +31,6 @@ public class ProfileTest {
         addres.add(new Address("Samara", "Lenina", 12, 5));
         addres.add(new Address("Moscow", "Lomonosow", 55, 205));
         List<Address> result = new Address().collect(addres);
-        result.sort(new AddressComp());
         assertThat(result.get(0), is(addres.get(1)));
     }
 }
