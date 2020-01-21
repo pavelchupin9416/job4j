@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import static org.hamcrest.Matchers.is;
 
 
@@ -41,5 +42,15 @@ public class SchoolTest {
         List<Student> result = new School().collect(students, student -> student.getScore() > 0 && student.getScore() <= 50);
         students.remove(students.get(1));
         assertThat(result, is(students));
+    }
+
+    @Test
+    public void whenListToMap() {
+        List<Student> students = new ArrayList<Student>();
+        students.add(new Student("Sergei", "Ivanov", 25));
+        students.add(new Student("Nikolai", "Petrov", 65));
+        students.add(new Student("Pavel", "Simakov", 11));
+        Map<String, Student> result = new Student().collect(students);
+        assertThat(result.get("Petrov").getName(), is(students.get(1).getName()));
     }
 }
