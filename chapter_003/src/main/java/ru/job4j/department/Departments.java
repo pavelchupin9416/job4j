@@ -30,7 +30,6 @@ public class Departments {
             }
         }
         ArrayList<String> result = new ArrayList<>(tmp);
-        result.sort(Comparator.naturalOrder());
         result.sort(new DepDescComp());
         return result;
     }
