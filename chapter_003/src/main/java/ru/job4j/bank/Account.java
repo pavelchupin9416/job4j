@@ -13,6 +13,9 @@ public class Account {
    private double values;
    private String reqs;
 
+    public Account() {
+    }
+
     public Account(double values, String requisites) {
         this.values = values;
         this.reqs = requisites;

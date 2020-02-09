@@ -1,8 +1,10 @@
 package ru.job4j.bank;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Class Bank .
@@ -37,33 +39,44 @@ public class Bank {
      * @param  passport -  паспорт.
      * @param  account -  аккаунт.
      */
-    public void addAccountToUser(String passport, Account account) {
+  /**  public void addAccountToUser(String passport, Account account) {
         for (User key : hashmap.keySet()) {
             if (key.matchPassport(passport)) {
                 this.hashmap.get(key).add(account);
             }
         }
     }
+*/
 
+  public void addAccountToUser(String passport, Account account) {
+
+      for (User key : hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).collect(Collectors.toSet())) {
+          this.hashmap.get(key).add(account);
+      }
+  }
     /**
      * getActualAccount - проверка массива.
      * @param  passport -  паспорт.
      * @param  requisite -  реквизит.
      */
     private Account getActualAccount(String passport, String requisite) {
-        ArrayList<Account> list = new ArrayList<>();
-        for (User key : hashmap.keySet()) {
+        List<List<Account>> listAccount = hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).map(key -> this.hashmap.get(key)).collect(Collectors.toList());
+        /*for (User key : hashmap.keySet()) {
             if (key.matchPassport(passport)) {
                list = this.hashmap.get(key);
             }
-        }
+        }*/
         int temp = -1;
+        Account account = new Account();
+        for (List<Account> list : listAccount) {
         for (Account ac : list) {
             if (ac.getReqs().equals(requisite)) {
               temp = list.indexOf(ac);
+              account = ac;
             }
             }
-        return temp == -1 ? null : list.get(temp);
+        }
+        return temp == -1 ? null : account;
     }
 
     /**
@@ -78,11 +91,17 @@ public class Bank {
      * @param  passport -  паспорт.
      * @param  account -  аккаунт.
      */
-    public void deleteAccountFromUser(String passport, Account account) {
+   /* public void deleteAccountFromUser(String passport, Account account) {
         for (User key : hashmap.keySet()) {
             if (key.matchPassport(passport)) {
                 this.hashmap.get(key).remove(account);
             }
+        }
+    }*/
+    public void deleteAccountFromUser(String passport, Account account) {
+        for (User key : hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).collect(Collectors.toSet())) {
+                this.hashmap.get(key).remove(account);
+
         }
     }
 
@@ -91,7 +110,7 @@ public class Bank {
      * @param   passport -  паспорт.
      * @return list - список аккаунтов.
      */
-    public List<Account> getUserAccounts(String passport) {
+  /**  public List<Account> getUserAccounts(String passport) {
         List<Account> list = new ArrayList<>(0);
         for (User key : hashmap.keySet()) {
             if (key.matchPassport(passport)) {
@@ -100,7 +119,15 @@ public class Bank {
         }
         return list;
     }
-
+*/
+  public List<Account> getUserAccounts(String passport) {
+      List<List<Account>> listAccount = hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).map(key -> this.hashmap.get(key)).collect(Collectors.toList());
+      List<Account> list = new ArrayList<>(0);
+      for (List<Account> list2 : listAccount) {
+          list = list2;
+      }
+       return  list;
+  }
     /**
      * transferMoney - перевод денег.
      * @param  srcPassport -  паспорт.
