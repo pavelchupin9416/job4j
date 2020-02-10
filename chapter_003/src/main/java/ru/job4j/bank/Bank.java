@@ -49,10 +49,8 @@ public class Bank {
 */
 
   public void addAccountToUser(String passport, Account account) {
-
-      for (User key : hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).collect(Collectors.toSet())) {
-          this.hashmap.get(key).add(account);
-      }
+      hashmap.keySet().stream().filter(key -> key.matchPassport(passport))
+              .forEach(key -> this.hashmap.get(key).add(account));
   }
     /**
      * getActualAccount - проверка массива.
@@ -60,23 +58,11 @@ public class Bank {
      * @param  requisite -  реквизит.
      */
     private Account getActualAccount(String passport, String requisite) {
-        List<List<Account>> listAccount = hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).map(key -> this.hashmap.get(key)).collect(Collectors.toList());
-        /*for (User key : hashmap.keySet()) {
-            if (key.matchPassport(passport)) {
-               list = this.hashmap.get(key);
-            }
-        }*/
-        int temp = -1;
         Account account = new Account();
-        for (List<Account> list : listAccount) {
-        for (Account ac : list) {
-            if (ac.getReqs().equals(requisite)) {
-              temp = list.indexOf(ac);
-              account = ac;
-            }
-            }
-        }
-        return temp == -1 ? null : account;
+        account = hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).map(key -> this.hashmap.get(key))
+                .collect(Collectors.toList()).stream().findFirst().orElse(null).stream().filter(ac -> ac.getReqs().equals(requisite))
+                .findFirst().orElse(null);
+        return account == null ? null : account;
     }
 
     /**
@@ -99,10 +85,8 @@ public class Bank {
         }
     }*/
     public void deleteAccountFromUser(String passport, Account account) {
-        for (User key : hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).collect(Collectors.toSet())) {
-                this.hashmap.get(key).remove(account);
+        hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).forEach(key -> this.hashmap.get(key).remove(account));
 
-        }
     }
 
     /**
@@ -121,11 +105,9 @@ public class Bank {
     }
 */
   public List<Account> getUserAccounts(String passport) {
-      List<List<Account>> listAccount = hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).map(key -> this.hashmap.get(key)).collect(Collectors.toList());
       List<Account> list = new ArrayList<>(0);
-      for (List<Account> list2 : listAccount) {
-          list = list2;
-      }
+       list = hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).map(key -> this.hashmap.get(key)).collect(Collectors.toList()).stream()
+              .findFirst().orElse(null);
        return  list;
   }
     /**
