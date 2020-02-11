@@ -60,7 +60,7 @@ public class Bank {
     private Account getActualAccount(String passport, String requisite) {
         Account account = new Account();
         account = hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).map(key -> this.hashmap.get(key))
-                .collect(Collectors.toList()).stream().findFirst().orElse(null).stream().filter(ac -> ac.getReqs().equals(requisite))
+                .findFirst().orElse(null).stream().filter(ac -> ac.getReqs().equals(requisite))
                 .findFirst().orElse(null);
         return account == null ? null : account;
     }
@@ -106,7 +106,7 @@ public class Bank {
 */
   public List<Account> getUserAccounts(String passport) {
       List<Account> list = new ArrayList<>(0);
-       list = hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).map(key -> this.hashmap.get(key)).collect(Collectors.toList()).stream()
+       list = hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).map(key -> this.hashmap.get(key))
               .findFirst().orElse(null);
        return  list;
   }
