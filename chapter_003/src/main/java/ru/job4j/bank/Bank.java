@@ -46,11 +46,18 @@ public class Bank {
             }
         }
     }
-*/
-
-  public void addAccountToUser(String passport, Account account) {
-      hashmap.keySet().stream().filter(key -> key.matchPassport(passport))
-              .forEach(key -> this.hashmap.get(key).add(account));
+*/private User findByPassport(String passport) {
+    return  hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).findFirst().orElse(null);
+  }
+private Account findAccount(String passport, String requisite) {
+    Account account = new Account();
+    account = this.hashmap.get(findByPassport(passport))
+            .stream().filter(ac -> ac.getReqs().equals(requisite))
+            .findFirst().orElse(null);
+    return account == null ? null : account;
+}
+    public void addAccountToUser(String passport, Account account) {
+      this.hashmap.get(findByPassport(passport)).add(account);
   }
     /**
      * getActualAccount - проверка массива.
@@ -58,11 +65,7 @@ public class Bank {
      * @param  requisite -  реквизит.
      */
     private Account getActualAccount(String passport, String requisite) {
-        Account account = new Account();
-        account = hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).map(key -> this.hashmap.get(key))
-                .findFirst().orElse(null).stream().filter(ac -> ac.getReqs().equals(requisite))
-                .findFirst().orElse(null);
-        return account == null ? null : account;
+        return findAccount(passport, requisite);
     }
 
     /**
@@ -85,7 +88,7 @@ public class Bank {
         }
     }*/
     public void deleteAccountFromUser(String passport, Account account) {
-        hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).forEach(key -> this.hashmap.get(key).remove(account));
+        this.hashmap.get(findByPassport(passport)).remove(account);
 
     }
 
@@ -106,8 +109,7 @@ public class Bank {
 */
   public List<Account> getUserAccounts(String passport) {
       List<Account> list = new ArrayList<>(0);
-       list = hashmap.keySet().stream().filter(key -> key.matchPassport(passport)).map(key -> this.hashmap.get(key))
-              .findFirst().orElse(null);
+       list = this.hashmap.get(findByPassport(passport));
        return  list;
   }
     /**
