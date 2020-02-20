@@ -51,13 +51,17 @@ public class Bank {
   }
 private Account findAccount(String passport, String requisite) {
     Account account = new Account();
+    if (findByPassport(passport) != null) {
     account = this.hashmap.get(findByPassport(passport))
             .stream().filter(ac -> ac.getReqs().equals(requisite))
             .findFirst().orElse(null);
+    }
     return account == null ? null : account;
 }
     public void addAccountToUser(String passport, Account account) {
-      this.hashmap.get(findByPassport(passport)).add(account);
+        if (findByPassport(passport) != null) {
+            this.hashmap.get(findByPassport(passport)).add(account);
+        }
   }
     /**
      * getActualAccount - проверка массива.
@@ -88,8 +92,9 @@ private Account findAccount(String passport, String requisite) {
         }
     }*/
     public void deleteAccountFromUser(String passport, Account account) {
-        this.hashmap.get(findByPassport(passport)).remove(account);
-
+         if (findByPassport(passport) != null) {
+             this.hashmap.get(findByPassport(passport)).remove(account);
+         }
     }
 
     /**
@@ -109,9 +114,12 @@ private Account findAccount(String passport, String requisite) {
 */
   public List<Account> getUserAccounts(String passport) {
       List<Account> list = new ArrayList<>(0);
-       list = this.hashmap.get(findByPassport(passport));
-       return  list;
-  }
+      if (findByPassport(passport) != null) {
+          list = this.hashmap.get(findByPassport(passport));
+      }
+          return list;
+      }
+
     /**
      * transferMoney - перевод денег.
      * @param  srcPassport -  паспорт.
@@ -121,22 +129,15 @@ private Account findAccount(String passport, String requisite) {
      * @return result - результат проверки.
      */
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
-        boolean src = false;
-        boolean dst = false;
         boolean transfer = false;
         Account ac1 = getActualAccount(srcPassport, srcRequisite);
         Account ac2 = getActualAccount(destPassport, dstRequisite);
-            if (ac1 != null) {
-                src = true;
-            }
-            if (ac2 != null) {
-                dst = true;
-            }
-        if ((src
-                && dst)
-                && (ac1.transfer(ac2, amount))) {
+        if (ac1 != null
+                && ac2 != null
+                && ac1.transfer(ac2, amount)) {
             transfer = true;
         }
         return transfer;
     }
+
 }
