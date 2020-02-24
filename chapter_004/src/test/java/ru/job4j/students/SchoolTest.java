@@ -2,9 +2,9 @@ package ru.job4j.students;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.Matchers.is;
 
 
@@ -21,7 +21,19 @@ public class SchoolTest {
         students.remove(students.get(1));
         assertThat(result, is(students));
     }
-
+@Test
+public void whenStudent() {
+    Set<Student> students = new HashSet<Student>();
+    students.add(null);
+    students.add(new Student("Sergei", "Ivanov", 25));
+    students.add(new Student("Nikolai", "Petrov", 65));
+    students.add(new Student("Pavel", "Simakov", 11));
+    int bound = 16;
+    Student st = new Student();
+    List<Student> stud = new ArrayList<>(students);
+    List<Student> result = st.levelOf(stud, bound);
+    assertThat(result.get(0), is(stud.get(1)));
+}
     @Test
     public void whenStudent50and70() {
         List<Student> students = new ArrayList<Student>();

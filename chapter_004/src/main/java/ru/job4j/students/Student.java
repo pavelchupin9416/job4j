@@ -3,13 +3,17 @@ package ru.job4j.students;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.Objects;
+import java.util.*;
+
+
 
 /**
  *Class Student хранит баллы студентов.
  *@author chupin
  *@since 4.01.2020
  */
-public class Student {
+public class Student  implements Comparable<Student> {
 
     private String name;
     private String surname;
@@ -29,6 +33,15 @@ public class Student {
         this.score = score;
     }
 
+
+    @Override
+    public int compareTo(Student st) {
+        return Integer.compare(st.score, this.score);
+    }
+
+    public List<Student> levelOf(List<Student> students, int bound) {
+        return students.stream().filter(a -> a != null).takeWhile(e -> e.score > bound).collect(Collectors.toList());
+    }
 
     public int getScore() {
         return score;
