@@ -51,16 +51,18 @@ public class Bank {
   }
 private Account findAccount(String passport, String requisite) {
     Account account = new Account();
-    if (findByPassport(passport) != null) {
-    account = this.hashmap.get(findByPassport(passport))
+    User user = findByPassport(passport);
+    if (user != null) {
+    account = this.hashmap.get(user)
             .stream().filter(ac -> ac.getReqs().equals(requisite))
             .findFirst().orElse(null);
     }
     return account == null ? null : account;
 }
     public void addAccountToUser(String passport, Account account) {
-        if (findByPassport(passport) != null) {
-            this.hashmap.get(findByPassport(passport)).add(account);
+    User user = findByPassport(passport);
+    if (user != null) {
+            this.hashmap.get(user).add(account);
         }
   }
     /**
@@ -92,8 +94,9 @@ private Account findAccount(String passport, String requisite) {
         }
     }*/
     public void deleteAccountFromUser(String passport, Account account) {
-         if (findByPassport(passport) != null) {
-             this.hashmap.get(findByPassport(passport)).remove(account);
+        User user = findByPassport(passport);
+        if (user != null) {
+             this.hashmap.get(user).remove(account);
          }
     }
 
@@ -114,8 +117,9 @@ private Account findAccount(String passport, String requisite) {
 */
   public List<Account> getUserAccounts(String passport) {
       List<Account> list = new ArrayList<>(0);
-      if (findByPassport(passport) != null) {
-          list = this.hashmap.get(findByPassport(passport));
+      User user = findByPassport(passport);
+      if (user != null) {
+          list = this.hashmap.get(user);
       }
           return list;
       }
