@@ -22,7 +22,7 @@ public class SchoolTest {
         assertThat(result, is(students));
     }
 @Test
-public void whenStudent() {
+public void whenStudentMoreBound() {
     Set<Student> students = new HashSet<Student>();
     students.add(null);
     students.add(new Student("Sergei", "Ivanov", 25));

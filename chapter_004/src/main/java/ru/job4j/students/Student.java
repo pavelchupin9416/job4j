@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.Objects;
 import java.util.*;
-
+import java.util.stream.Stream;
 
 
 /**
@@ -40,7 +40,7 @@ public class Student  implements Comparable<Student> {
     }
 
     public List<Student> levelOf(List<Student> students, int bound) {
-        return students.stream().filter(a -> a != null).takeWhile(e -> e.score > bound).collect(Collectors.toList());
+        return students.stream().flatMap(Stream::ofNullable).takeWhile(e -> e.score > bound).collect(Collectors.toList());
     }
 
     public int getScore() {
