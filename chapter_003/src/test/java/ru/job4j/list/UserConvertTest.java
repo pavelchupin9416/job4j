@@ -11,7 +11,7 @@ public class UserConvertTest {
     @Test
     public void mapConvert() {
         UserConvert userConvert = new UserConvert();
-        List<User> list = Arrays.asList(
+        List<User> list = List.of(
                 new User(1, "Вася", "Москва"),
                 new User(2, "Николай", "Питер")
         );

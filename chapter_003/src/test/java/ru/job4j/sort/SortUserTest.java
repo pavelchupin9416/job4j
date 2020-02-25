@@ -14,16 +14,17 @@ public class SortUserTest {
     @Test
     public void sort() {
         SortUser set = new SortUser();
-        List<User> list = Arrays.asList(
+        List<User> list = List.of(
                 new User(2, "Николай", 23),
                 new User(1, "Вася", 11),
                 new User(3, "Виктор", 7)
         );
         Set<User> result = set.sort(list);
-        TreeSet<User> example = new TreeSet<>();
-        example.add(new User(3, "Виктор", 7));
-        example.add(new User(1, "Вася", 11));
-        example.add(new User(2, "Николай", 23));
+        Set<User> example  = Set.of(
+                new User(3, "Виктор", 7),
+                new User(1, "Вася", 11),
+                new User(2, "Николай", 23)
+        );
         assertThat(result.equals(example), is(true));
     }
 
@@ -36,7 +37,7 @@ public class SortUserTest {
                 new User(3, "Виктор", 7)
         );
         list = lists.sortNameLength(list);
-        List<User> example = Arrays.asList(
+        List<User> example = List.of(
                 new User(1, "Вася", 11),
                 new User(3, "Виктор", 7),
                 new User(2, "Николай", 23));
@@ -56,7 +57,7 @@ public class SortUserTest {
                 new User(4, "Иван", 25)
         );
         list = lists.sortByAllFields(list);
-        List<User> example = Arrays.asList(
+        List<User> example = List.of(
                 new User(4, "Иван", 25),
                 new User(2, "Иван", 30),
                 new User(3, "Сергей", 20),
