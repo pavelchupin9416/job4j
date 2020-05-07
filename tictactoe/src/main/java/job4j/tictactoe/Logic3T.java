@@ -1,6 +1,7 @@
 package job4j.tictactoe;
 
 import java.util.function.Predicate;
+import java.util.*;
 
 public class Logic3T {
     private final Figure3T[][] table;
@@ -32,31 +33,23 @@ public class Logic3T {
     }
 
     public boolean isWinner(Predicate<Figure3T> predicate) {
-        return this.fillBy(predicate, 0, 0, 1, 0)
-                || this.fillBy(predicate, 0, 0, 0, 1)
-                || this.fillBy(predicate, 0, 0, 1, 1)
-                || this.fillBy(predicate, 0, 1, 1, 0)
-                || this.fillBy(predicate, 0, this.table.length - 1, 1, 0)
-                || this.fillBy(predicate, 1, 0, 0, 1)
-                || this.fillBy(predicate, this.table.length - 1, 0, 0, 1)
-                || this.fillBy(predicate, this.table.length - 1, 0, -1, 1);
+        boolean winner;
+        winner = this.fillBy(predicate, this.table.length - 1, 0, -1, 1)
+                || this.fillBy(predicate, 0, 0, 1, 1);
+        if(!winner) {
+        for (int i = 0; i < this.table.length; i++) {
+            if (this.fillBy(predicate, i, 0, 0, 1)
+                    || this.fillBy(predicate, 0, i, 1, 0)) {
+                winner = true;
+                break;
+            }
+        }}
+        return winner;
     }
 
 
     public boolean hasGap() {
-        boolean result = false;
-        for (int index = 0; index != this.table.length; index++) {
-            for (int j = 0; j != this.table.length; j++) {
-            Figure3T cell = this.table[index][j];
-            if (!cell.hasMarkX() && !cell.hasMarkO()) {
-                result = true;
-                break;
-            }
-            if (result == true) {
-            break;
-            }
-            }
-        }
-        return  result;
+        return !(this.table.length * this.table.length
+                == Arrays.stream(this.table).flatMap(Arrays::stream).takeWhile(i->i.hasMarkO() || i.hasMarkX()).count());
     }
 }
