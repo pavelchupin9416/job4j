@@ -36,20 +36,19 @@ public class Logic3T {
         boolean winner;
         winner = this.fillBy(predicate, this.table.length - 1, 0, -1, 1)
                 || this.fillBy(predicate, 0, 0, 1, 1);
-        if(!winner) {
+        if (!winner) {
         for (int i = 0; i < this.table.length; i++) {
             if (this.fillBy(predicate, i, 0, 0, 1)
                     || this.fillBy(predicate, 0, i, 1, 0)) {
                 winner = true;
                 break;
             }
-        }}
+        }
+        }
         return winner;
     }
 
-
     public boolean hasGap() {
-        return !(this.table.length * this.table.length
-                == Arrays.stream(this.table).flatMap(Arrays::stream).takeWhile(i->i.hasMarkO() || i.hasMarkX()).count());
+        return Arrays.stream(this.table).flatMap(Arrays::stream).anyMatch(i->!i.hasMarkO() && !i.hasMarkX());
     }
 }
